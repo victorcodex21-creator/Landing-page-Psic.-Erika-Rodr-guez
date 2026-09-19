@@ -36,8 +36,7 @@
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%236B8E7B'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='48' font-weight='bold' fill='white' text-anchor='middle'%3EER%3C/text%3E%3C/svg%3E">
 
-    <!-- ═══════════ GOOGLE ANALYTICS 4 ═══════════ -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6KGDLR2XKH"></script>
+    <!-- Las analíticas se cargan después del contenido visible para no retrasar el LCP. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -46,19 +45,31 @@
         'anonymize_ip': true,
         'cookie_flags': 'SameSite=None;Secure'
       });
+      (function () {
+        var analyticsLoaded = false;
+        var loadAnalytics = function () {
+          if (analyticsLoaded) return;
+          analyticsLoaded = true;
+          var script = document.createElement('script');
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-6KGDLR2XKH';
+          script.async = true;
+          document.head.appendChild(script);
+          var vercel = document.createElement('script');
+          vercel.src = '/_vercel/insights/script.js';
+          vercel.defer = true;
+          document.head.appendChild(vercel);
+        };
+        ['pointerdown', 'keydown', 'touchstart'].forEach(function (eventName) {
+          window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+        });
+      }());
     </script>
 
-    <!-- ═══════════ VERCEL WEB ANALYTICS ═══════════ -->
-    <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Recursos visuales originales, alojados localmente para no añadir latencia externa. -->
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="preload" as="style" href="assets/fontawesome/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/fontawesome/css/all.min.css"></noscript>
 
     <script type="application/ld+json">
     {
@@ -116,30 +127,11 @@
     }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sage: { 50: '#F4F7F5', 100: '#EAF0EC', 200: '#D2E0D7', 500: '#6B8E7B', 600: '#587766', 700: '#466052', 800: '#374B40' },
-                        beige: { 50: '#FDFBF7', 100: '#F7F3EB', 200: '#EFEAE1', 300: '#E3DACD' },
-                        charcoal: { 800: '#2C3531', 900: '#1C2320' }
-                    },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['Lora', 'serif']
-                    },
-                    screens: { 'xs': '400px' }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         html { -webkit-tap-highlight-color: transparent; }
         body { background-color: #FDFBF7; color: #2C3531; overflow-x: hidden; }
+
 
         em, .italic { font-style: italic; }
         strong { font-weight: 600; }
@@ -163,6 +155,17 @@
         }
         .carousel-x::-webkit-scrollbar { display: none; }
         .carousel-x > * { scroll-snap-align: center; flex-shrink: 0; }
+
+        /* En escritorio las listas dejan de ser carruseles y recuperan su retícula original. */
+        @media (min-width: 768px) {
+            .carousel-x {
+                display: grid;
+                overflow: visible;
+                scroll-snap-type: none;
+                padding: 0;
+            }
+            .carousel-x > * { flex-shrink: 1; }
+        }
 
         button:focus-visible, a:focus-visible {
             outline: 3px solid #6B8E7B;
@@ -345,10 +348,13 @@
 
                         <div class="relative bg-white p-3 md:p-6 rounded-3xl shadow-xl border border-beige-200 text-center">
                             <div class="relative overflow-hidden rounded-2xl bg-beige-50 border border-beige-200">
-                                <img src="erika_rodriguez_foto.jpeg"
-                                     alt="Psic. Erika Rodríguez, especialista en Terapia Breve Estratégica en Tijuana"
-                                     width="480" height="600" loading="eager" fetchpriority="high"
-                                     class="w-full h-auto max-h-[340px] md:max-h-[480px] object-cover object-top">
+                                <picture>
+                                    <source srcset="erika_rodriguez_foto.webp" type="image/webp">
+                                    <img src="erika_rodriguez_foto.jpeg"
+                                         alt="Psic. Erika Rodríguez, especialista en Terapia Breve Estratégica en Tijuana"
+                                         width="560" height="747" fetchpriority="high" decoding="async"
+                                         class="w-full h-auto max-h-[340px] md:max-h-[480px] object-cover object-top">
+                                </picture>
                             </div>
 
                             <div class="mt-3 md:mt-4 p-2.5 md:p-3 rounded-2xl bg-beige-100/80 border border-beige-200 text-left">
@@ -675,7 +681,7 @@
             <div class="carousel-x md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:snap-none">
 
                 <figure class="w-[85%] xs:w-[80%] sm:w-[55%] md:w-auto testimonial-quote relative bg-white rounded-3xl p-6 md:p-7 border border-beige-200 shadow-md">
-                    <div class="flex gap-1 mb-3 text-amber-500" aria-label="5 estrellas">
+                    <div class="flex gap-1 mb-3 text-amber-500" role="img" aria-label="5 de 5 estrellas">
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
@@ -691,7 +697,7 @@
                 </figure>
 
                 <figure class="w-[85%] xs:w-[80%] sm:w-[55%] md:w-auto testimonial-quote relative bg-white rounded-3xl p-6 md:p-7 border border-beige-200 shadow-md">
-                    <div class="flex gap-1 mb-3 text-amber-500" aria-label="5 estrellas">
+                    <div class="flex gap-1 mb-3 text-amber-500" role="img" aria-label="5 de 5 estrellas">
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
@@ -707,7 +713,7 @@
                 </figure>
 
                 <figure class="w-[85%] xs:w-[80%] sm:w-[55%] md:w-auto testimonial-quote relative bg-white rounded-3xl p-6 md:p-7 border border-beige-200 shadow-md">
-                    <div class="flex gap-1 mb-3 text-amber-500" aria-label="5 estrellas">
+                    <div class="flex gap-1 mb-3 text-amber-500" role="img" aria-label="5 de 5 estrellas">
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
                         <i class="fa-solid fa-star text-sm" aria-hidden="true"></i>
@@ -1086,10 +1092,5 @@
         }
     </script>
 
-    <!-- ═══════════ VERCEL WEB ANALYTICS ═══════════ -->
-    <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
