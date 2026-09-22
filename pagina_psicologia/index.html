@@ -190,7 +190,12 @@
                 pointer-events: none;
                 transition: opacity 0.3s ease-out;
             }
-            .mobile-menu-overlay.open { opacity: 1; pointer-events: auto; }
+            .mobile-menu-overlay.open {
+                opacity: 1;
+                pointer-events: auto;
+                -webkit-backdrop-filter: blur(4px);
+                backdrop-filter: blur(4px);
+            }
 
             @keyframes fadeInUp {
                 from { opacity: 0; transform: translateY(20px); }
@@ -216,12 +221,10 @@
                 line-height: 1;
             }
 
-            /* Mantiene el mismo diseño; evita procesar secciones fuera de pantalla al iniciar en escritorio. */
-            @media (min-width: 768px) {
-                .defer-render {
-                    content-visibility: auto;
-                    contain-intrinsic-size: auto 900px;
-                }
+            /* Mantiene el mismo diseño; evita procesar secciones fuera de pantalla al iniciar. */
+            .defer-render {
+                content-visibility: auto;
+                contain-intrinsic-size: auto 900px;
             }
         </style>
     </head>
@@ -262,7 +265,7 @@
             </div>
         </header>
 
-        <div id="menuOverlay" class="mobile-menu-overlay fixed inset-0 z-40 bg-charcoal-900/50 backdrop-blur-sm md:hidden" aria-hidden="true"></div>
+    <div id="menuOverlay" class="mobile-menu-overlay fixed inset-0 z-40 bg-charcoal-900/50 md:hidden" aria-hidden="true"></div>
 
         <nav id="mobileMenu" class="mobile-menu fixed top-0 right-0 z-50 h-full w-[80%] max-w-sm bg-beige-50 shadow-2xl md:hidden" aria-label="Menú móvil">
             <div class="flex items-center justify-between p-5 border-b border-beige-200">
