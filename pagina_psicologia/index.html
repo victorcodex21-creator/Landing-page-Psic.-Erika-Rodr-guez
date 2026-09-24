@@ -54,6 +54,15 @@
           });
           // Etiqueta base de Google Ads: permite atribuir visitas procedentes de campañas.
           gtag('config', 'AW-18471177931');
+
+          // Conversión de Google Ads: se registra al iniciar una reserva desde un botón Agendar.
+          function gtag_report_conversion() {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-18471177931/SApVCLDpjIMdEMud3-dE',
+              'value': 1.0,
+              'currency': 'MXN'
+            });
+          }
           (function () {
             var analyticsLoaded = false;
             var loadAnalytics = function () {
@@ -255,7 +264,7 @@
                 </nav>
 
                 <a href="https://hub.holaelo.app/agendar/psic-rodriguez-e-gmail-com" target="_blank" rel="noopener noreferrer"
-                   onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'Header Desktop' });"
+                   onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'Header Desktop' }); gtag_report_conversion();"
                    class="hidden md:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-sage-500 text-white font-semibold text-sm hover:bg-sage-600 transition-all shadow-md hover:shadow-lg">
                    <i class="fa-regular fa-calendar-check mr-2" aria-hidden="true"></i> Agendar Cita
                 </a>
@@ -302,7 +311,7 @@
                 </a>
 
                 <a href="https://hub.holaelo.app/agendar/psic-rodriguez-e-gmail-com" target="_blank" rel="noopener noreferrer"
-                   onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'Menú Móvil' });"
+                   onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'Menú Móvil' }); gtag_report_conversion();"
                    class="mobile-link flex items-center justify-center gap-2 mt-4 p-4 rounded-xl bg-sage-500 text-white font-bold text-center shadow-lg">
                     <i class="fa-regular fa-calendar-check" aria-hidden="true"></i> Agendar Cita
                 </a>
@@ -351,7 +360,7 @@
 
                         <div class="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3">
                             <a href="https://hub.holaelo.app/agendar/psic-rodriguez-e-gmail-com" target="_blank" rel="noopener noreferrer"
-                               onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'Hero Principal' });"
+                               onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'Hero Principal' }); gtag_report_conversion();"
                                class="btn-touch px-6 md:px-8 py-4 rounded-2xl bg-sage-500 hover:bg-sage-600 active:bg-sage-700 text-white font-bold text-base shadow-lg cta-shadow transition-all flex items-center justify-center gap-2 group">
                                 <span>Agendar Sesión</span>
                                 <i class="fa-solid fa-arrow-right text-sm transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
@@ -568,7 +577,7 @@
                                 <span class="text-xs text-sage-700 font-medium"><i class="fa-regular fa-clock mr-1" aria-hidden="true"></i> 50 minutos</span>
                             </div>
                             <a href="https://hub.holaelo.app/agendar/psic-rodriguez-e-gmail-com" target="_blank" rel="noopener noreferrer"
-                               onclick="gtag('event', 'click_agendar', { 'event_category': 'Servicios', 'event_label': 'Individual' });"
+                               onclick="gtag('event', 'click_agendar', { 'event_category': 'Servicios', 'event_label': 'Individual' }); gtag_report_conversion();"
                                class="block w-full py-3 rounded-xl bg-sage-500 hover:bg-sage-600 active:bg-sage-700 text-white font-semibold text-sm text-center transition-colors shadow-sm">
                                 Agendar Individual
                             </a>
@@ -598,7 +607,7 @@
                                 <span class="text-xs text-sage-700 font-medium"><i class="fa-regular fa-clock mr-1" aria-hidden="true"></i> 50 minutos</span>
                             </div>
                             <a href="https://hub.holaelo.app/agendar/psic-rodriguez-e-gmail-com" target="_blank" rel="noopener noreferrer"
-                               onclick="gtag('event', 'click_agendar', { 'event_category': 'Servicios', 'event_label': 'Pareja' });"
+                               onclick="gtag('event', 'click_agendar', { 'event_category': 'Servicios', 'event_label': 'Pareja' }); gtag_report_conversion();"
                                class="block w-full py-3 rounded-xl bg-sage-500 hover:bg-sage-600 active:bg-sage-700 text-white font-semibold text-sm text-center transition-colors shadow-sm">
                                 Agendar Pareja
                             </a>
@@ -985,7 +994,7 @@
 
                         <div class="md:col-span-4 flex">
                             <a href="https://hub.holaelo.app/agendar/psic-rodriguez-e-gmail-com" target="_blank" rel="noopener noreferrer"
-                               onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'CTA Final' });"
+                               onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'CTA Final' }); gtag_report_conversion();"
                                class="btn-touch w-full px-6 py-4 rounded-2xl bg-white text-sage-800 hover:bg-beige-50 active:bg-beige-100 font-bold text-center text-sm shadow-lg transition-all flex items-center justify-center gap-2">
                                 <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
                                 Agendar Cita Ahora
@@ -1049,7 +1058,7 @@
                     <span class="text-[10px] text-sage-700 font-medium">El Lago, Tijuana</span>
                 </div>
                 <a href="https://hub.holaelo.app/agendar/psic-rodriguez-e-gmail-com" target="_blank" rel="noopener noreferrer"
-                   onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'Barra Móvil' });"
+                   onclick="gtag('event', 'click_agendar', { 'event_category': 'CTA', 'event_label': 'Barra Móvil' }); gtag_report_conversion();"
                    class="btn-touch px-5 py-3 rounded-xl bg-sage-500 active:bg-sage-700 text-white font-bold text-sm shadow-md flex items-center gap-2">
                     <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
                     <span>Agendar</span>
