@@ -4,15 +4,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        sage: { 50: '#FAF8F4', 100: '#EDE4D8', 200: '#dcd0c0', 500: '#365B58', 600: '#2a4744', 700: '#203a37', 800: '#303735' },
-        beige: { 50: '#FAF8F4', 100: '#F4EFE9', 200: '#EDE4D8', 300: '#dcd0c0' },
-        charcoal: { 800: '#303735', 900: '#1C2320' }
+        petroleo: '#365B58',
+        arena: '#EDE4D8',
+        blanco: '#FAF8F4',
+        gris: '#77736E',
+        carbon: '#303735',
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-        serif: ['Lora', 'serif']
+        serif: ['Lora', 'serif'],
       },
-      screens: { xs: '400px' }
-    }
-  }
+      screens: { xs: '400px' },
+    },
+  },
 };
