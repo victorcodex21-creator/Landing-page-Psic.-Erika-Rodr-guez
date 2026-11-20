@@ -70,7 +70,7 @@ for old, new in HEX_MAP.items():
     html = re.sub(old, new, html, flags=re.IGNORECASE)
 
 # 4) Textos secundarios: carbón con opacidad -> gris cálido
-html = re.sub(r"text-charcoal-800/(50|60|70|75|80)\b", "text-gris", html)
+html = re.sub(r"text-charcoal-800/(50|60|70|75|80|85|90)\b", "text-gris", html)
 html = html.replace(
     "</head>",
     "<style>.text-gris{--tw-text-opacity:1;color:#77736E}</style>\n</head>",
